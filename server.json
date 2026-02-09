@@ -1,0 +1,41 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.tailored-tools/rapidtools-validate",
+  "version": "1.0.0",
+  "description": "Deterministic JSON Schema validation with signed attestations. Same inputs, same outputs, every time. Cryptographic proof that validation happened.",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@rapidtools/mcp-server",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environment_variables": [
+        {
+          "name": "RAPIDTOOLS_API_KEY",
+          "description": "Your RapidTools API key",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/Tailored-Tools/rapidtools-mcp-server",
+    "source": "github"
+  },
+  "tools": [
+    {
+      "name": "validate",
+      "description": "Validate a JSON payload against a JSON Schema and get a signed attestation"
+    },
+    {
+      "name": "verify",
+      "description": "Verify the cryptographic signature of a validation attestation"
+    },
+    {
+      "name": "get_attestation",
+      "description": "Retrieve a stored validation attestation by ID"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "@tailoredtools/mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for RapidTools — deterministic JSON Schema validation with signed attestations",
+  "type": "module",
+  "bin": {
+    "rapidtools-mcp-server": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "json-schema",
+    "validation",
+    "attestation",
+    "ai-agents"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tailored-Tools/rapidtools-mcp-server"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
