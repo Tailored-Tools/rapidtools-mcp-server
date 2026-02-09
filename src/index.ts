@@ -152,13 +152,26 @@ server.tool(
   },
 );
 
+// ─── Smithery sandbox export ────────────────────────────────────
+export function createSandboxServer() {
+  return server;
+}
+
 // ─── Start ─────────────────────────────────────────────────────
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
 }
 
-main().catch((err) => {
-  console.error("Fatal:", err);
-  process.exit(1);
-});
+const isDirectRun =
+  process.argv[1] &&
+  (process.argv[1].endsWith("/index.js") ||
+    process.argv[1].endsWith("/index.cjs") ||
+    process.argv[1].includes("rapidtools-mcp-server"));
+
+if (isDirectRun) {
+  main().catch((err) => {
+    console.error("Fatal:", err);
+    process.exit(1);
+  });
+}

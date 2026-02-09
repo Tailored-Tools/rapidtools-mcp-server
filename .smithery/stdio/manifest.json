@@ -1,0 +1,137 @@
+{
+  "type": "stdio",
+  "runtime": "node",
+  "hasAuthAdapter": false,
+  "serverCard": {
+    "serverInfo": {
+      "name": "rapidtools",
+      "version": "1.0.0"
+    },
+    "tools": [
+      {
+        "name": "validate",
+        "description": "Validate a JSON payload against a JSON Schema. Returns a signed attestation proving validation occurred. Deterministic: same inputs always produce the same result.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "schema": {
+              "type": "object",
+              "additionalProperties": {},
+              "description": "JSON Schema object (Draft 2020-12 subset)"
+            },
+            "payload": {
+              "description": "The data to validate against the schema"
+            },
+            "metadata": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Optional key-value metadata to attach to the attestation"
+            },
+            "idempotency_key": {
+              "type": "string",
+              "description": "Optional idempotency key for deduplication"
+            }
+          },
+          "required": [
+            "schema"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "verify",
+        "description": "Verify the cryptographic signature of a validation attestation. Confirm that a previous validation result has not been tampered with.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "attestation_id": {
+              "type": "string",
+              "description": "ID of a stored attestation to verify"
+            },
+            "id": {
+              "type": "string",
+              "description": "Attestation ID (for inline verification)"
+            },
+            "schema_hash": {
+              "type": "string",
+              "description": "Schema hash (for inline verification)"
+            },
+            "payload_hash": {
+              "type": "string",
+              "description": "Payload hash (for inline verification)"
+            },
+            "valid": {
+              "type": "boolean",
+              "description": "Validation result (for inline verification)"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": {}
+              },
+              "description": "Validation errors (for inline verification)"
+            },
+            "created_at": {
+              "type": "string",
+              "description": "Timestamp (for inline verification)"
+            },
+            "signature": {
+              "type": "string",
+              "description": "HMAC signature (for inline verification)"
+            },
+            "service_version": {
+              "type": "string",
+              "description": "Service version (for inline verification)"
+            },
+            "metadata": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Metadata (for inline verification)"
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_attestation",
+        "description": "Retrieve a stored validation attestation by its ID. Returns the full attestation record including schema hash, payload hash, validation result, and cryptographic signature.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "attestation_id": {
+              "type": "string",
+              "description": "The attestation ID to retrieve"
+            }
+          },
+          "required": [
+            "attestation_id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  },
+  "source": {
+    "commit": "cb041ee5c626b79c5a9b7409a01ce1d1a0953f8d",
+    "branch": "main"
+  }
+}
